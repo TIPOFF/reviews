@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": "7.2",
+        "php": "^7.2",
         "google/apiclient": "^2.0",
         "laravel/framework": "^7.0"
     },
@@ -51,5 +51,5 @@
         "psr-4": {
             "DrewRoberts\\Google\\Tests\\": "tests"
         }
-    },
+    }
 }

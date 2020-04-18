@@ -2,7 +2,9 @@
 
 namespace DrewRoberts\Google;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use DrewRoberts\Google\\Http\Controllers\CredentialsController;
 
 class GoogleServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,8 @@ class GoogleServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/google.php' => config_path('google.php'),
         ]);
+
+        Route::get('grant-access', CredentialsController::class);
     }
 
     /**

@@ -13,6 +13,12 @@ class GoogleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'google');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/google'),
+        ], 'views');
+
         $this->publishes([
             __DIR__.'/../config/google.php' => config_path('google.php'),
         ]);

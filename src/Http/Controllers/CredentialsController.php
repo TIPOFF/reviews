@@ -8,6 +8,8 @@ class ChuckNorrisController
 {
     public function __invoke()
     {
-        
+        return view('google::grant-access', [
+            
+        ]);
     }
 }

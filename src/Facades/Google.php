@@ -1,6 +1,6 @@
 <?php
 
-namespace DrewRoberts\Google;
+namespace DrewRoberts\Google\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

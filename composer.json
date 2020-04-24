@@ -43,7 +43,7 @@
                 "DrewRoberts\\Google\\GoogleServiceProvider"
             ],
             "aliases": {
-                "Google": "DrewRoberts\\Google\\GoogleFacade"
+                "Google": "DrewRoberts\\Google\\Facades\\Google"
             }
         }
     },

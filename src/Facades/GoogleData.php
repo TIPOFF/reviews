@@ -1,6 +1,6 @@
 <?php
 
-namespace DrewRoberts\Google\Facades;
+namespace DrewRoberts\GoogleData\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -8,6 +8,6 @@ class GoogleFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'laravel-google-api-client';
+        return 'reporting';
     }
 }

@@ -1,26 +1,26 @@
 <?php
 
-namespace DrewRoberts\Google;
+namespace DrewRoberts\GoogleData;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use DrewRoberts\Google\\Http\Controllers\CredentialsController;
 
-class GoogleServiceProvider extends ServiceProvider
+class ReportingServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'google');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'googledata');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/google'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/googledata'),
         ], 'views');
 
         $this->publishes([
-            __DIR__.'/../config/google.php' => config_path('google.php'),
+            __DIR__.'/../config/googledata.php' => config_path('googledata.php'),
         ]);
 
         Route::get('grant-access', CredentialsController::class);
@@ -31,7 +31,7 @@ class GoogleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/google.php', 'google');
+        $this->mergeConfigFrom(__DIR__.'/../config/googledata.php', 'googledata');
 
     }
 

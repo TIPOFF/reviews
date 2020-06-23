@@ -2,13 +2,13 @@
 
 namespace DrewRoberts\Google\Http\Controllers;
 
-use DrewRoberts\Google\GoogleFacade;
+use DrewRoberts\GoogleData\GoogleFacade;
 
 class ChuckNorrisController
 {
     public function __invoke()
     {
-        return view('google::grant-access', [
+        return view('googledata::grant-access', [
             
         ]);
     }

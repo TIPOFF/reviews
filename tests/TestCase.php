@@ -2,8 +2,8 @@
 
 namespace DrewRoberts\Reporting\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use DrewRoberts\Reporting\ReportingServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 /**
  * Class TestCase
@@ -12,7 +12,6 @@ use DrewRoberts\Reporting\ReportingServiceProvider;
  */
 class TestCase extends Orchestra
 {
-
     public function setUp(): void
     {
         parent::setUp();

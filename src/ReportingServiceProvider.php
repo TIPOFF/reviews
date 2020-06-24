@@ -2,7 +2,12 @@
 
 namespace DrewRoberts\Reporting;
 
-use DrewRoberts\Reporting\Commands\TestCommand;
+use DrewRoberts\Reporting\Console\Commands\PullInsights;
+use DrewRoberts\Reporting\Console\Commands\PullReviews;
+use DrewRoberts\Reporting\Console\Commands\SnapshotCompetitors;
+use DrewRoberts\Reporting\Console\Commands\SyncLocations;
+use DrewRoberts\Reporting\Http\Controllers\AccessController;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -30,11 +35,20 @@ class ReportingServiceProvider extends ServiceProvider
             }
 
             $this->commands([
-                TestCommand::class,
+                PullInsights::class,
+                PullReviews::class,
+                SnapshotCompetitors::class,
+                SyncLocations::class,
             ]);
         }
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'reporting');
+
+        Route::macro('reporting', function($prefix = 'reporting') {
+            Route::group(['prefix' => $prefix], function() {
+                Route::get('grant-access', [AccessController::class, 'show']);
+            });
+        });
     }
 
     public function register()

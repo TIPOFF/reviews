@@ -7,16 +7,14 @@ namespace DrewRoberts\Reporting\Http\Controllers;
  *
  * @package DrewRoberts\Reporting\Http\Controllers
  */
-class ReportingController
+class AccessController
 {
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function __invoke()
+    public function show()
     {
-        return view('reporting::grant-access', [
-
-        ]);
+        return view('reporting::grant-access');
     }
 }

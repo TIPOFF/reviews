@@ -2,6 +2,8 @@
 
 return [
 
+    'api_key' => env('GOOGLE_API', null),
+
     /*
      * Here you may define the "scopes" that your application will request
      * from the users and need for the data you will access throuh the API.

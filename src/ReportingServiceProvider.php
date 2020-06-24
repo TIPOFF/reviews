@@ -1,42 +1,45 @@
 <?php
 
-namespace DrewRoberts\GoogleData;
+namespace DrewRoberts\Reporting;
 
-use Illuminate\Support\Facades\Route;
+use DrewRoberts\Reporting\Commands\TestCommand;
 use Illuminate\Support\ServiceProvider;
-use DrewRoberts\Google\\Http\Controllers\CredentialsController;
 
+/**
+ * Class ReportingServiceProvider
+ *
+ * @package DrewRoberts\Reporting
+ */
 class ReportingServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application events.
-     */
+
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'googledata');
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/reporting.php' => config_path('reporting.php'),
+            ], 'config');
 
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/googledata'),
-        ], 'views');
+            $this->publishes([
+                __DIR__.'/../resources/views' => base_path('resources/views/vendor/reporting'),
+            ], 'views');
 
-        $this->publishes([
-            __DIR__.'/../config/googledata.php' => config_path('googledata.php'),
-        ]);
+            if (! class_exists('CreateReportingTables')) {
+                $this->publishes([
+                    __DIR__ . '/../database/migrations/create_reporting_tables.php' => database_path('migrations/' . date('Y_m_d_His') . '_create_reporting_tables.php'),
+                ], 'migrations');
+            }
 
-        Route::get('grant-access', CredentialsController::class);
+            $this->commands([
+                TestCommand::class,
+            ]);
+        }
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'reporting');
     }
 
-    /**
-     * Register the service provider.
-     */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/googledata.php', 'googledata');
-
-    }
-
-    protected function guardAgainstInvalidConfiguration(array $googleConfig = null)
-    {
-
+        $this->mergeConfigFrom(__DIR__.'/../config/reporting.php', 'reporting');
     }
 }

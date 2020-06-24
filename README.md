@@ -1,37 +1,69 @@
-# Laravel Location Reporting
+# Laravel Google API Client
 
-This package is an implementation for gathering data for location-based reporting through Google API's for Google My Business (GMB), Google Places, and Google Analytics. It stores both Reviews and Insights from GMB locations. It also allows Competitors of those locations to be stored in a database table and collects snapshots of total reviews and ratings of those competitors from Google Places. For websites with location/market based URL structures it stores Google Analytics data as well.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/drewroberts/reporting.svg?style=flat-square)](https://packagist.org/packages/drewroberts/reporting)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/drewroberts/reporting/run-tests?label=tests)](https://github.com/drewroberts/reporting/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/drewroberts/reporting.svg?style=flat-square)](https://packagist.org/packages/drewroberts/reporting)
 
-This package includes an opinionated Laravel wrapper for the [Google API PHP Client](https://github.com/googleapis/google-api-php-client) with a different implementation than [Pulkit Jalan's package](https://github.com/pulkitjalan/google-apiclient). These credentials are stored in a database table instead of a json file in the directory. It uses the Laravel default User model with [Authentication](https://laravel.com/docs/authentication). The credentials have access tokens and refresh tokens that are updated when needed so they never expire and can be used by the application to gather data or act on behalf of the user through Google's API. The user has the ability to revoke access in their Google account.
 
-In addition to the user granted permission token, the package also uses an application token for Google Places which is added to the .env file.
+This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
 ## Installation
 
-This package can be installed through Composer.
+You can install the package via composer:
 
-``` bash
+```bash
 composer require drewroberts/reporting
 ```
 
-You can publish the config file of this package with this command:
+You can publish and run the migrations with:
 
-``` bash
-php artisan vendor:publish --provider="DrewRoberts\GoogleData\ReportingServiceProvider"
+```bash
+php artisan vendor:publish --provider="DrewRoberts\Reporting\ReportingServiceProvider" --tag="migrations"
+php artisan migrate
 ```
 
-The following config file will be published in `config/googledata.php`
+You can publish the config file with:
+```bash
+php artisan vendor:publish --provider="DrewRoberts\Reporting\ReportingServiceProvider" --tag="config"
+```
+
+This is the contents of the published config file:
 
 ```php
 return [
-
-    /*
-     * Here you may define the "scopes" that your application will request
-     * from the users and need for the data you will access throuh the API.
-     * For more information, see docs for google-api-php-client.
-     */
-    'scopes' => [
-        'https://www.googleapis.com/auth/business.manage',
-    ],
 ];
 ```
+
+## Usage
+
+``` php
+$client = new DrewRoberts\Reporting();
+echo $client->echoPhrase('Hello');
+```
+
+## Testing
+
+``` bash
+composer test
+```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
+
+## Credits
+
+- [Drew Roberts](https://github.com/drewroberts)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

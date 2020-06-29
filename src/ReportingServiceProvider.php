@@ -2,10 +2,10 @@
 
 namespace DrewRoberts\Reporting;
 
-use DrewRoberts\Reporting\Console\Commands\PullInsights;
-use DrewRoberts\Reporting\Console\Commands\PullReviews;
-use DrewRoberts\Reporting\Console\Commands\SnapshotCompetitors;
-use DrewRoberts\Reporting\Console\Commands\SyncLocations;
+//use DrewRoberts\Reporting\Console\Commands\PullInsights;
+//use DrewRoberts\Reporting\Console\Commands\PullReviews;
+//use DrewRoberts\Reporting\Console\Commands\SnapshotCompetitors;
+//use DrewRoberts\Reporting\Console\Commands\SyncLocations;
 use DrewRoberts\Reporting\Http\Controllers\AccessController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -28,22 +28,18 @@ class ReportingServiceProvider extends ServiceProvider
                 __DIR__.'/../resources/views' => base_path('resources/views/vendor/reporting'),
             ], 'views');
 
-            if (! class_exists('CreateReportingTables')) {
-                $this->publishes([
-                    __DIR__ . '/../database/migrations/create_reporting_tables.php' => database_path('migrations/' . date('Y_m_d_His') . '_create_reporting_tables.php'),
-                ], 'migrations');
-            }
-
-            $this->commands([
-                PullInsights::class,
-                PullReviews::class,
-                SnapshotCompetitors::class,
-                SyncLocations::class,
-            ]);
+//            $this->commands([
+//                PullInsights::class,
+//                PullReviews::class,
+//                SnapshotCompetitors::class,
+//                SyncLocations::class,
+//            ]);
         }
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'reporting');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
+        // Allows for route registration with Route::reporting();
         Route::macro('reporting', function($prefix = 'reporting') {
             Route::group(['prefix' => $prefix], function() {
                 Route::get('grant-access', [AccessController::class, 'show']);

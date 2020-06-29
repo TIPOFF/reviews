@@ -23,12 +23,4 @@ class Snapshot extends Model
     protected $casts = [
         'date' => 'date',
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function competitor()
-    {
-        return $this->belongsTo(Competitor::class);
-    }
 }

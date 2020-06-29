@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Insight
  *
- * @package DrewRoberts\Reporting\Models
+ * @package App\Models
  */
 class Insight extends Model
 {

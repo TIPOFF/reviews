@@ -10,6 +10,7 @@ class CreateKeysTable extends Migration
     {
         Schema::create('keys', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('slug')->unique()->index();
             $table->text('value')->nullable();
             $table->timestamps();

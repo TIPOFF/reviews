@@ -13,12 +13,10 @@ class CreateLocationsTable extends Migration
             $table->string('slug')->unique()->index();
             $table->string('name')->unique(); // Internal reference name
             $table->string('title_part')->nullable(); // For when have more than one location in a market, this is used to generate formal title.
-            $table->string('timezone'); // Informal symbol such as EST or CST
+            $table->string('timezone'); // Pull out into own migration
             $table->foreignId('market_id')->references('id')->on('markets');
-            $table->boolean('corporate')->default(true); // Mark false for Miami & DC
             $table->string('gmb_location')->nullable()->unique(); // GMB ID for API. Will be used to update all the other fields below.
             $table->string('gmb_account')->nullable();
-            $table->boolean('use_iframe')->default(false); // If yes, use the booking iframe below
 
             // All updated from GMB so have one place as source of truth
             $table->string('title')->nullable()->unique(); // Location Title for display from GMB.
@@ -57,8 +55,6 @@ class CreateLocationsTable extends Migration
             $table->string('yelp')->nullable()->unique(); // URL for location's Yelp page
 
             $table->foreignId('manager_id')->nullable()->references('id')->on('users');
-            $table->text('waiver')->nullable(); // Waiver agreement for the location
-            $table->text('waiver_minor')->nullable(); // Waiver statement for parent/legal gaurdian of minors at the location
             $table->date('closed_at')->nullable();
 
             $table->foreignId('creator_id')->references('id')->on('users');

@@ -1,14 +1,7 @@
 <?php
 
-namespace DrewRoberts\LaravelGoogleApiClient\Tests;
+namespace Tipoff\Reviews\Tests;
 
-use DrewRoberts\Reporting\Tests\TestCase;
-
-/**
- * Class ExampleTest
- *
- * @package DrewRoberts\LaravelGoogleApiClient\Tests
- */
 class ExampleTest extends TestCase
 {
     /** @test */

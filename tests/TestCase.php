@@ -1,39 +1,29 @@
 <?php
 
-namespace DrewRoberts\Reporting\Tests;
+namespace Tipoff\Reviews\Tests;
 
-use DrewRoberts\Reporting\ReportingServiceProvider;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Tipoff\Reviews\ReviewsServiceProvider;
 
-/**
- * Class TestCase
- *
- * @package DrewRoberts\Reporting\Tests
- */
 class TestCase extends Orchestra
 {
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->withFactories(__DIR__.'/database/factories');
+        Factory::guessFactoryNamesUsing(
+            fn (string $modelName) => 'Tipoff\\Reviews\\Database\\Factories\\'.class_basename($modelName).'Factory'
+        );
     }
 
-    /**
-     * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array|string[]
-     */
     protected function getPackageProviders($app)
     {
         return [
-            ReportingServiceProvider::class,
+            ReviewsServiceProvider::class,
         ];
     }
 
-    /**
-     * @param  \Illuminate\Foundation\Application  $app
-     */
     public function getEnvironmentSetUp($app)
     {
         $app['config']->set('database.default', 'sqlite');
@@ -43,8 +33,9 @@ class TestCase extends Orchestra
             'prefix' => '',
         ]);
 
-
-        include_once __DIR__.'/../database/migrations/create_reporting_tables.php';
-        (new \CreateReportingTables())->up();
+        /*
+        include_once __DIR__.'/../database/migrations/create_reviews_table.php.stub';
+        (new \CreatePackageTable())->up();
+        */
     }
 }

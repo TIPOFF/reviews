@@ -1,42 +1,44 @@
 {
-    "name": "drewroberts/reporting",
-    "description": "Laravel Google API Client",
+    "name": "tipoff/reviews",
+    "description": "Laravel Package for tracking Google reviews",
     "keywords": [
-        "reporting"
+        "tipoff",
+        "reviews"
     ],
-    "homepage": "https://github.com/drewroberts/reporting",
+    "homepage": "https://github.com/tipoff/reviews",
     "license": "MIT",
     "authors": [
         {
-            "name": "Drew Roberts",
-            "email": "drew@drewroberts.com",
+            "name": "Tipoff",
+            "email": "packages@tipoff.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^7.4",
-        "drewroberts/media": "^1.0",
-        "google/apiclient": "^2.0"
+        "php": "^7.4|^8.0",
+        "spatie/laravel-package-tools": "^1.1",
+        "illuminate/contracts": "^8.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "orchestra/testbench": "^5.0",
-        "phpunit/phpunit": "^9.0"
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3",
+        "spatie/laravel-ray": "^1.9"
     },
     "autoload": {
         "psr-4": {
-            "DrewRoberts\\Reporting\\": "src"
+            "Tipoff\\Reviews\\": "src",
+            "Tipoff\\Reviews\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DrewRoberts\\Reporting\\Tests\\": "tests"
+            "Tipoff\\Reviews\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
         "sort-packages": true
@@ -44,10 +46,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DrewRoberts\\Reporting\\ReportingServiceProvider"
+                "Tipoff\\Reviews\\ReviewsServiceProvider"
             ],
             "aliases": {
-                "Reporting": "DrewRoberts\\Reporting\\ReportingFacade"
+                "Reviews": "Tipoff\\Reviews\\ReviewsFacade"
             }
         }
     },

@@ -32,7 +32,7 @@ class ReviewsServiceProvider extends PackageServiceProvider
     public function packageBooted()
     {
         foreach ($this->package->migrationFileNames as $migrationFileName) {
-            if (!$this->migrationFileExists($migrationFileName)) {
+            if (! $this->migrationFileExists($migrationFileName)) {
                 $this->publishes([
                     $this->package->basePath("/../database/migrations/{$migrationFileName}.php.stub") => database_path('migrations/' . Str::finish($migrationFileName, '.php')),
                 ], "{$this->package->name}-migrations");

@@ -21,7 +21,7 @@ class ReviewsServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigrations([
                 '2020_02_25_160000_create_reviews_table',
-                '2020_02_25_150000_create_keys_table'
+                '2020_02_25_150000_create_keys_table',
             ]);
     }
 

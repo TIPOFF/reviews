@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         php: [8.0, 7.4]
@@ -28,11 +28,26 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: none
-          
+          tools: composer:v2
+
       - name: Setup problem matchers
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - if: matrix.os == 'ubuntu-latest'
+        name: Setup Ubuntu Nova
+        env:
+          NOVA_USERNAME: ${{ secrets.NovaUsername }}
+          NOVA_PASSWORD: ${{ secrets.NovaPassword }}
+        run: composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
+
+      - if: matrix.os == 'windows-latest'
+        name: Setup Windows Nova
+        env:
+          NOVA_USERNAME: ${{ secrets.NovaUsername }}
+          NOVA_PASSWORD: ${{ secrets.NovaPassword }}
+        run: composer config http-basic.nova.laravel.com ${env:NOVA_USERNAME} ${env:NOVA_PASSWORD}
 
       - name: Install dependencies
         run: |

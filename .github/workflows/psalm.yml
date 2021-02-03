@@ -27,7 +27,12 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Run composer install
-        run: composer install -n --prefer-dist
+        env:
+          NOVA_USERNAME: ${{ secrets.NovaUsername }}
+          NOVA_PASSWORD: ${{ secrets.NovaPassword }}
+        run: |
+          composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
+          composer install -n --prefer-dist
 
       - name: Run psalm
         run: ./vendor/bin/psalm --output-format=github

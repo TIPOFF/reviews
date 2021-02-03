@@ -9,8 +9,6 @@ return [
 
         'location' => \App\Models\Location::class,
 
-        'key' => \App\Models\Key::class,
-
     ]
 
 ];

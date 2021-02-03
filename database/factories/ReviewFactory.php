@@ -26,7 +26,6 @@ class ReviewFactory extends Factory
             'reviewer'          => $this->faker->name,
             'reviewer_photo'    => $this->faker->word,
 
-            'reviewed_at'       => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
             'reviewed_at'       => $this->faker->dateTimeBetween($startDate = '-7 days', $endDate = 'now', $timezone = null),
             'reply'             => $this->faker->sentences(3, true),
             'replied_at'        => $this->faker->dateTimeBetween($startDate = '-7 days', $endDate = 'now', $timezone = null),

@@ -9,7 +9,7 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $locationModel = config('reviews.model_class.location');
+            $locationModel = config('tipoff.model_class.location');
             $locationTable = (new $locationModel)->getTable();
 
             $table->id();

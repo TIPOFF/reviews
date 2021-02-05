@@ -22,7 +22,7 @@ class Review extends BaseModel
 
     public function location()
     {
-        return $this->belongsTo(config('reviews.model_class.location'));
+        return $this->belongsTo(config('tipoff.model_class.location'));
     }
 
     public function getTitleAttribute()

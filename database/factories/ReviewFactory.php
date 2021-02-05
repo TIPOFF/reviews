@@ -29,7 +29,7 @@ class ReviewFactory extends Factory
             'reviewed_at'       => $this->faker->dateTimeBetween($startDate = '-7 days', $endDate = 'now', $timezone = null),
             'reply'             => $this->faker->sentences(3, true),
             'replied_at'        => $this->faker->dateTimeBetween($startDate = '-7 days', $endDate = 'now', $timezone = null),
-            'location_id'       => randomOrCreate(config('reviews.model_class.location')),
+            'location_id'       => randomOrCreate(config('tipoff.model_class.location')),
         ];
     }
 }

@@ -4,8 +4,8 @@ namespace Tipoff\Reviews\Models;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Tipoff\Support\HasPackageFactory;
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasPackageFactory;
 
 class Review extends BaseModel
 {

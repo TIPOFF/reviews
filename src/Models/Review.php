@@ -3,13 +3,13 @@
 namespace Tipoff\Reviews\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasPackageFactory;
 
 class Review extends BaseModel
 {
-    use HasFactory;
+    use HasPackageFactory;
 
     protected $guarded = ['id'];
     protected $casts = [

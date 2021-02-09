@@ -1,4 +1,8 @@
-<?php namespace Tipoff\Reviews\Models;
+<?php
+
+declare(strict_types=1);
+
+namespace Tipoff\Reviews\Models;
 
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;

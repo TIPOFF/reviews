@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Tipoff\Reviews\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Tipoff\Reviews\Models\Key;
+use Tipoff\Reviews\Models\Competitor;
+use Tipoff\Reviews\Models\Snapshot;
 
-class KeyFactory extends Factory
+class SnapshotFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Key::class;
+    protected $model = Snapshot::class;
 
     /**
      * Define the model's default state.
@@ -24,7 +25,9 @@ class KeyFactory extends Factory
     public function definition()
     {
         return [
-            'slug' => $this->faker->slug
+            'competitor_id'     => randomOrCreate(Competitor::class),
+            'date'              => $this->faker->date,
+            'reviews'           => $this->faker->numberBetween(1, 8),
         ];
     }
 }

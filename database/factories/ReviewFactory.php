@@ -1,4 +1,8 @@
-<?php namespace Tipoff\Reviews\Database\Factories;
+<?php
+
+declare(strict_types=1);
+
+namespace Tipoff\Reviews\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Tipoff\Reviews\Models\Review;

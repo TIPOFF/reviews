@@ -8,8 +8,8 @@ use Laravel\Nova\NovaCoreServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Tipoff\Reviews\ReviewsServiceProvider;
 use Tipoff\Reviews\Tests\Support\Models\User;
-use Tipoff\Support\SupportServiceProvider;
 use Tipoff\Reviews\Tests\Support\Providers\NovaTestbenchServiceProvider;
+use Tipoff\Support\SupportServiceProvider;
 
 class TestCase extends Orchestra
 {

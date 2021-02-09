@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews;
 
-use Illuminate\Support\Str;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

@@ -11,8 +11,6 @@ use Tipoff\Reviews\Nova\Competitor;
 use Tipoff\Reviews\Nova\Insight;
 use Tipoff\Reviews\Nova\Review;
 use Tipoff\Reviews\Nova\Snapshot;
-use Tipoff\Vouchers\Nova\Voucher;
-use Tipoff\Vouchers\Nova\VoucherType;
 
 class NovaTestbenchServiceProvider extends NovaApplicationServiceProvider
 {

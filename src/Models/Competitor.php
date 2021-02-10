@@ -16,6 +16,8 @@ class Competitor extends Model
     protected $casts = [
     ];
 
+    protected $snapshot = app('snapshot');
+
     public function market()
     {
         return $this->belongsTo(app('market'));
@@ -23,7 +25,7 @@ class Competitor extends Model
 
     public function snapshots()
     {
-        return $this->hasMany(Snapshot::class);
+        return $this->hasMany(app('snapshot'));
     }
 
     public function location()
@@ -38,7 +40,7 @@ class Competitor extends Model
 
     public function getReviewsAttribute()
     {
-        $recent = Snapshot::where('competitor_id', $this->id)->orderByDesc('date')->first();
+        $recent = $this->snapshot::where('competitor_id', $this->id)->orderByDesc('date')->first();
 
         if (! isset($recent)) {
             return '?';
@@ -57,8 +59,8 @@ class Competitor extends Model
             $firstdate = new Carbon('last wednesday');
         }
 
-        $recent = Snapshot::where('competitor_id', $this->id)->where('date', $firstdate->format('Y-m-d'))->first();
-        $prior = Snapshot::where('competitor_id', $this->id)->where('date', $firstdate->subDays(7)->format('Y-m-d'))->first();
+        $recent = $this->snapshot::where('competitor_id', $this->id)->where('date', $firstdate->format('Y-m-d'))->first();
+        $prior = $this->snapshot::where('competitor_id', $this->id)->where('date', $firstdate->subDays(7)->format('Y-m-d'))->first();
 
         if (! isset($recent) || ! isset($prior)) {
             return '?';
@@ -72,8 +74,8 @@ class Competitor extends Model
         // Snapshots are run on the 1st of every month.
         $firstdate = Carbon::now('America/New_York')->firstOfMonth();
 
-        $recent = Snapshot::where('competitor_id', $this->id)->where('date', $firstdate->format('Y-m-d'))->first();
-        $prior = Snapshot::where('competitor_id', $this->id)->where('date', $firstdate->subMonths(1)->format('Y-m-d'))->first();
+        $recent = $this->snapshot::where('competitor_id', $this->id)->where('date', $firstdate->format('Y-m-d'))->first();
+        $prior = $this->snapshot::where('competitor_id', $this->id)->where('date', $firstdate->subMonths(1)->format('Y-m-d'))->first();
 
         if (! isset($recent) || ! isset($prior)) {
             return '?';

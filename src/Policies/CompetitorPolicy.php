@@ -2,9 +2,9 @@
 
 namespace Tipoff\Reviews\Policies;
 
-use Tipoff\Reviews\Models\Competitor;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Tipoff\Reviews\Models\Competitor;
 
 class CompetitorPolicy
 {

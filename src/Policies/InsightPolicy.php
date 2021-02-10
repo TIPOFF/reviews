@@ -2,9 +2,9 @@
 
 namespace Tipoff\Reviews\Policies;
 
-use Tipoff\Reviews\Models\Insight;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Tipoff\Reviews\Models\Insight;
 
 class InsightPolicy
 {

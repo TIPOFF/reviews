@@ -16,7 +16,6 @@ class Competitor extends Model
     protected $casts = [
     ];
 
-
     public function market()
     {
         return $this->belongsTo(app('market'));

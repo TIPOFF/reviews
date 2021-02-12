@@ -37,6 +37,7 @@ class Competitor extends Model
 
     public function getReviewsAttribute()
     {
+        /** @var Model $snapshot */
         $snapshot = app('snapshot');
 
         $recent = $snapshot::where('competitor_id', $this->id)->orderByDesc('date')->first();
@@ -50,6 +51,7 @@ class Competitor extends Model
 
     public function getWeeklyReviewsAttribute()
     {
+        /** @var Model $snapshot */
         $snapshot = app('snapshot');
 
         // Snapshots are run every Wednesday morning.
@@ -72,8 +74,9 @@ class Competitor extends Model
 
     public function getMonthlyReviewsAttribute()
     {
+        /** @var Model $snapshot */
         $snapshot = app('snapshot');
-        
+
         // Snapshots are run on the 1st of every month.
         $firstdate = Carbon::now('America/New_York')->firstOfMonth();
 

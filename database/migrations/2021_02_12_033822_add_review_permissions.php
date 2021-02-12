@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Spatie\Permission\Contracts\Permission;
 use Spatie\Permission\PermissionRegistrar;
 
-class AddSignaturePermissions extends Migration
+class AddReviewPermissions extends Migration
 {
     public function up()
     {

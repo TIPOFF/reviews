@@ -18,10 +18,10 @@
         "php": "^7.4|^8.0",
         "google/apiclient": "^2.7",
         "tipoff/authorization": "^1.0.1",
-        "tipoff/support": "^1.2.2"
+        "tipoff/support": "^1.2.6"
     },
     "require-dev": {
-        "tipoff/test-support": "^1.0.2"
+        "tipoff/test-support": "^1.0.3"
     },
     "autoload": {
         "psr-4": {

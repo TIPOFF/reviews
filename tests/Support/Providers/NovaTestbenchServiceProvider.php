@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Tests\Support\Providers;
 
-use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Nova;
-use Laravel\Nova\NovaApplicationServiceProvider;
 use Tipoff\Reviews\Nova\Competitor;
 use Tipoff\Reviews\Nova\Insight;
 use Tipoff\Reviews\Nova\Review;

@@ -3,8 +3,8 @@
 namespace Tipoff\Reviews\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Tipoff\Support\Contracts\Models\UserInterface;
 use Tipoff\Reviews\Models\Review;
+use Tipoff\Support\Contracts\Models\UserInterface;
 
 class ReviewPolicy
 {

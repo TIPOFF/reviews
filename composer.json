@@ -17,18 +17,17 @@
     "require": {
         "php": "^7.4|^8.0",
         "google/apiclient": "^2.7",
-        "tipoff/support": "^1.1.2"
+        "tipoff/authorization": "^1.0.1",
+        "tipoff/support": "^1.2.2"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.0",
-        "phpunit/phpunit": "^9.3",
-        "spatie/laravel-ray": "^1.9",
-        "vimeo/psalm": "^4.4"
+        "tipoff/test-support": "^1.0.2"
     },
     "autoload": {
         "psr-4": {
             "Tipoff\\Reviews\\": "src",
-            "Tipoff\\Reviews\\Database\\Factories\\": "database/factories"
+            "Tipoff\\Reviews\\Database\\Factories\\": "database/factories",
+            "Tipoff\\Reviews\\Database\\Seeders\\": "database/seeders"
         }
     },
     "autoload-dev": {

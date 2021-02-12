@@ -2,92 +2,45 @@
 
 namespace Tipoff\Reviews\Policies;
 
-use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Tipoff\Support\Contracts\Models\UserInterface;
 use Tipoff\Reviews\Models\Snapshot;
 
 class SnapshotPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
+    public function viewAny(UserInterface $user): bool
     {
         return $user->hasPermissionTo('view snapshots') ? true : false;
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Snapshot  $snapshot
-     * @return mixed
-     */
-    public function view(User $user, Snapshot $snapshot)
+    public function view(UserInterface $user, Snapshot $snapshot): bool
     {
         return $user->hasPermissionTo('view snapshots') ? true : false;
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
+    public function create(UserInterface $user): bool
     {
         return false;
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Snapshot  $snapshot
-     * @return mixed
-     */
-    public function update(User $user, Snapshot $snapshot)
+    public function update(UserInterface $user, Snapshot $snapshot): bool
     {
         return false;
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Snapshot  $snapshot
-     * @return mixed
-     */
-    public function delete(User $user, Snapshot $snapshot)
+    public function delete(UserInterface $user, Snapshot $snapshot): bool
     {
         return false;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Snapshot  $snapshot
-     * @return mixed
-     */
-    public function restore(User $user, Snapshot $snapshot)
+    public function restore(UserInterface $user, Snapshot $snapshot): bool
     {
         return false;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Snapshot  $snapshot
-     * @return mixed
-     */
-    public function forceDelete(User $user, Snapshot $snapshot)
+    public function forceDelete(UserInterface $user, Snapshot $snapshot): bool
     {
         return false;
     }

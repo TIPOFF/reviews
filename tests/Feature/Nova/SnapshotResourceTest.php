@@ -6,8 +6,8 @@ namespace Tipoff\Reviews\Tests\Feature\Nova;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Reviews\Models\Snapshot;
-use Tipoff\Reviews\Tests\Support\Models\User;
 use Tipoff\Reviews\Tests\TestCase;
+use Tipoff\TestSupport\Models\User;
 
 class SnapshotResourceTest extends TestCase
 {

@@ -20,6 +20,6 @@ class Snapshot extends Model
 
     public function competitor()
     {
-        return $this->belongsTo(Competitor::class);
+        return $this->belongsTo(app('competitor'));
     }
 }

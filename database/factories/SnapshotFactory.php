@@ -25,7 +25,7 @@ class SnapshotFactory extends Factory
     public function definition()
     {
         return [
-            'competitor_id'     => randomOrCreate(Competitor::class),
+            'competitor_id'     => randomOrCreate(app('competitor')),
             'date'              => $this->faker->date,
             'reviews'           => $this->faker->numberBetween(1, 8),
         ];

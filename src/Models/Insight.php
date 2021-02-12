@@ -11,9 +11,6 @@ class Insight extends Model
 {
     use HasPackageFactory;
 
-    protected $guarded = ['id'];
-
-
     protected $casts = [
         'date' => 'date',
     ];

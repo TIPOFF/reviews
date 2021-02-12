@@ -12,7 +12,6 @@ class Competitor extends Model
 {
     use HasPackageFactory;
 
-    protected $guarded = ['id'];
     protected $casts = [
     ];
 

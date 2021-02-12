@@ -24,7 +24,7 @@ class Review extends BaseModel
 
     public function location()
     {
-        return $this->belongsTo(config('tipoff.model_class.location'));
+        return $this->belongsTo(app('location'));
     }
 
     public function getTitleAttribute()

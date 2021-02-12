@@ -34,11 +34,11 @@ class ReviewsServiceProvider extends PackageServiceProvider
 
     public function registeringPackage()
     {
-        foreach([
+        foreach ([
             Competitor::class => CompetitorPolicy::class,
             Insight::class => InsightPolicy::class,
             Review::class => ReviewPolicy::class,
-            Snapshot::class => SnapshotPolicy::class
+            Snapshot::class => SnapshotPolicy::class,
         ] as $key => $policy) {
             Gate::policy($key, $policy);
         }

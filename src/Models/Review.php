@@ -13,7 +13,6 @@ class Review extends BaseModel
 {
     use HasPackageFactory;
 
-    protected $guarded = ['id'];
     protected $casts = [
         'reviewed_at' => 'datetime',
         'review_updated_at' => 'datetime',

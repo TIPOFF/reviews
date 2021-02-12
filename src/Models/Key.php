@@ -11,7 +11,5 @@ class Key extends BaseModel
 {
     use HasPackageFactory;
 
-    protected $guarded = ['id'];
-
     protected $casts = [];
 }

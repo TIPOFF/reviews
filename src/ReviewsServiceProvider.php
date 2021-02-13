@@ -12,6 +12,8 @@ use Tipoff\Reviews\Policies\CompetitorPolicy;
 use Tipoff\Reviews\Policies\InsightPolicy;
 use Tipoff\Reviews\Policies\ReviewPolicy;
 use Tipoff\Reviews\Policies\SnapshotPolicy;
+use Tipoff\Support\TipoffPackage;
+use Tipoff\Support\TipoffServiceProvider;
 
 class ReviewsServiceProvider extends TipoffServiceProvider
 {

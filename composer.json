@@ -47,10 +47,7 @@
         "laravel": {
             "providers": [
                 "Tipoff\\Reviews\\ReviewsServiceProvider"
-            ],
-            "aliases": {
-                "Reviews": "Tipoff\\Reviews\\ReviewsFacade"
-            }
+            ]
         }
     },
     "repositories": [

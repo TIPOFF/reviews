@@ -11,9 +11,9 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Tipoff\Support\Nova\Resource;
+use Tipoff\Support\Nova\BaseResource;
 
-class Snapshot extends Resource
+class Snapshot extends BaseResource
 {
     public static $model = \Tipoff\Reviews\Models\Snapshot::class;
 

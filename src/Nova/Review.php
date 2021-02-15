@@ -17,9 +17,9 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Tipoff\Support\Nova\Resource;
+use Tipoff\Support\Nova\BaseResource;
 
-class Review extends Resource
+class Review extends BaseResource
 {
     public static $model = \Tipoff\Reviews\Models\Review::class;
 

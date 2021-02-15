@@ -11,9 +11,9 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Tipoff\Support\Nova\Resource;
+use Tipoff\Support\Nova\BaseResource;
 
-class Snapshot extends Resource
+class Snapshot extends BaseResource
 {
     public static $model = \Tipoff\Reviews\Models\Snapshot::class;
 
@@ -41,7 +41,7 @@ class Snapshot extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Competitor', 'competitor', Competitor::class)->sortable(),
+            BelongsTo::make('Competitor', 'competitor', nova('competitor'))->sortable(),
             Date::make('Date')->sortable(),
             Number::make('Reviews')->sortable(),
             Text::make('Rating')->sortable(),
@@ -54,7 +54,7 @@ class Snapshot extends Resource
             Date::make('Date'),
             Number::make('Reviews'),
             Text::make('Rating'),
-            BelongsTo::make('Competitor', 'competitor', Competitor::class),
+            BelongsTo::make('Competitor', 'competitor', nova('competitor')),
             ID::make(),
         ];
     }

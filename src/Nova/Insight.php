@@ -11,9 +11,9 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Tipoff\Support\Nova\Resource;
+use Tipoff\Support\Nova\BaseResource;
 
-class Insight extends Resource
+class Insight extends BaseResource
 {
     public static $model = \Tipoff\Reviews\Models\Insight::class;
 
@@ -31,7 +31,7 @@ class Insight extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Location', 'location', app()->getAlias('nova.location'))->sortable(),
+            BelongsTo::make('Location', 'location', nova('location'))->sortable(),
             Date::make('Date')->sortable(),
             Number::make('Views', function () {
                 return $this->views_maps + $this->views_search;
@@ -49,7 +49,7 @@ class Insight extends Resource
                 return $this->views_maps + $this->views_search;
             }),
             Number::make('Visits'),
-            BelongsTo::make('Location', 'location', app()->getAlias('nova.location')),
+            BelongsTo::make('Location', 'location', nova('location')),
             ID::make(),
 
             new Panel('Views', $this->viewFields()),

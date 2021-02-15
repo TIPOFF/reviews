@@ -17,9 +17,9 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Tipoff\Support\Nova\Resource;
+use Tipoff\Support\Nova\BaseResource;
 
-class Review extends Resource
+class Review extends BaseResource
 {
     public static $model = \Tipoff\Reviews\Models\Review::class;
 
@@ -35,7 +35,7 @@ class Review extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Location', 'location', app()->getAlias('nova.location'))->sortable(),
+            BelongsTo::make('Location', 'location', nova('location'))->sortable(),
             DateTime::make('Review Date', 'reviewed_at')->format('YYYY-MM-DD')->sortable(),
             Number::make('Rating')->sortable(),
             Badge::make('Replied', function () {
@@ -62,7 +62,7 @@ class Review extends Resource
                 return $value;
             })->readonly(),
             DateTime::make('Review Date', 'reviewed_at')->readonly(),
-            BelongsTo::make('Location')->readonly(),
+            BelongsTo::make('Location', 'location', nova('location'))->readonly(),
 
             new Panel('Display Details', $this->displayFields()),
 

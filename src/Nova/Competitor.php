@@ -12,9 +12,9 @@ use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Tipoff\Support\Nova\Resource;
+use Tipoff\Support\Nova\BaseResource;
 
-class Competitor extends Resource
+class Competitor extends BaseResource
 {
     public static $model = \Tipoff\Reviews\Models\Competitor::class;
 
@@ -34,7 +34,7 @@ class Competitor extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Market', 'market', app()->getAlias('nova.market'))->sortable(),
+            BelongsTo::make('Market', 'market', nova('market'))->sortable(),
             Text::make('Name')->sortable(),
         ];
     }
@@ -47,8 +47,8 @@ class Competitor extends Resource
             Text::make('Website', function () {
                 return '<a href="'.$this->website.'">'.$this->website.'</a>';
             })->asHtml(),
-            BelongsTo::make('Market', 'market', app()->getAlias('nova.market'))->searchable(),
-            BelongsTo::make('Location', 'location', app()->getAlias('nova.location'))->nullable(),
+            BelongsTo::make('Market', 'market', nova('market'))->searchable(),
+            BelongsTo::make('Location', 'location', nova('market'))->nullable(),
 
             new Panel('Address Information', $this->addressFields()),
 
@@ -56,7 +56,7 @@ class Competitor extends Resource
 
             new Panel('Hours of Operation', $this->hoursFields()),
 
-            HasMany::make('Snapshots', 'snapshots', Snapshot::class),
+            HasMany::make('Snapshots', 'snapshots', nova('snapshot')),
         ];
     }
 

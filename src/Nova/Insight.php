@@ -11,9 +11,9 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Tipoff\Support\Nova\Resource;
+use Tipoff\Support\Nova\BaseResource;
 
-class Insight extends Resource
+class Insight extends BaseResource
 {
     public static $model = \Tipoff\Reviews\Models\Insight::class;
 

@@ -34,11 +34,18 @@ return [
 ];
 ```
 
-## Usage
+## Models
 
-```php
-$reviews = new Tipoff\Reviews();
-echo $reviews->echoPhrase('Hello, Tipoff!');
+We include the following models in this package:
+
+**List of Models**
+
+- Competitor
+- Insight
+- Key
+- Review
+- Snapshot
+
 ```
 
 ## Testing

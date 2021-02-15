@@ -12,9 +12,9 @@ use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Tipoff\Support\Nova\Resource;
+use Tipoff\Support\Nova\BaseResource;
 
-class Competitor extends Resource
+class Competitor extends BaseResource
 {
     public static $model = \Tipoff\Reviews\Models\Competitor::class;
 

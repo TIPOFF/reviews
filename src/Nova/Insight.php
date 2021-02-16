@@ -27,29 +27,34 @@ class Insight extends BaseResource
 
     public static $perPageViaRelationship = 10;
 
+    /** @psalm-suppress UndefinedClass */
+    protected array $filterClassList = [
+
+    ];
+
     public function fieldsForIndex(NovaRequest $request)
     {
-        return [
+        return array_filter([
             ID::make()->sortable(),
-            BelongsTo::make('Location', 'location', app()->getAlias('nova.location'))->sortable(),
+            nova('location') ? BelongsTo::make('Location', 'location', nova('location'))->sortable() : null,
             Date::make('Date')->sortable(),
             Number::make('Views', function () {
                 return $this->views_maps + $this->views_search;
             })->sortable(),
             Number::make('Visits')->sortable(),
-        ];
+        ]);
     }
 
     public function fields(Request $request)
     {
-        return [
+        return array_filter([
             Date::make('Date'),
             Date::make('Day of Week', 'date')->format('dddd'),
             Number::make('Views', function () {
                 return $this->views_maps + $this->views_search;
             }),
             Number::make('Visits'),
-            BelongsTo::make('Location', 'location', app()->getAlias('nova.location')),
+            nova('location') ? BelongsTo::make('Location', 'location', nova('location')) : null,
             ID::make(),
 
             new Panel('Views', $this->viewFields()),
@@ -59,7 +64,7 @@ class Insight extends BaseResource
             new Panel('Actions', $this->actionFields()),
 
             new Panel('Photos', $this->photoFields()),
-        ];
+        ]);
     }
 
     protected function viewFields()
@@ -109,29 +114,6 @@ class Insight extends BaseResource
                 return $this->photos_count_merchant + $this->photos_count_customer;
             }),
         ];
-    }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [
-            // TODO - figure out how to share this
-            // new Filters\Location,
-        ];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
     }
 
     public static function indexQuery(NovaRequest $request, $query)

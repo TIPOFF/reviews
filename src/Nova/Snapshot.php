@@ -37,45 +37,30 @@ class Snapshot extends BaseResource
 
     public static $perPageViaRelationship = 10;
 
+    /** @psalm-suppress UndefinedClass */
+    protected array $filterClassList = [
+
+    ];
+
     public function fieldsForIndex(NovaRequest $request)
     {
-        return [
+        return array_filter([
             ID::make()->sortable(),
-            BelongsTo::make('Competitor', 'competitor', Competitor::class)->sortable(),
+            nova('competitor') ? BelongsTo::make('Competitor', 'competitor', nova('competitor'))->sortable() : null,
             Date::make('Date')->sortable(),
             Number::make('Reviews')->sortable(),
             Text::make('Rating')->sortable(),
-        ];
+        ]);
     }
 
     public function fields(Request $request)
     {
-        return [
+        return array_filter([
             Date::make('Date'),
             Number::make('Reviews'),
             Text::make('Rating'),
-            BelongsTo::make('Competitor', 'competitor', Competitor::class),
+            nova('competitor') ? BelongsTo::make('Competitor', 'competitor', nova('competitor')) : null,
             ID::make(),
-        ];
-    }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
+        ]);
     }
 }

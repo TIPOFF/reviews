@@ -31,11 +31,16 @@ class Review extends BaseResource
 
     public static $group = 'Reporting';
 
+    /** @psalm-suppress UndefinedClass */
+    protected array $filterClassList = [
+
+    ];
+
     public function fieldsForIndex(NovaRequest $request)
     {
-        return [
+        return array_filter([
             ID::make()->sortable(),
-            BelongsTo::make('Location', 'location', app()->getAlias('nova.location'))->sortable(),
+            nova('location') ? BelongsTo::make('Location', 'location', nova('location'))->sortable() : null,
             DateTime::make('Review Date', 'reviewed_at')->format('YYYY-MM-DD')->sortable(),
             Number::make('Rating')->sortable(),
             Badge::make('Replied', function () {
@@ -49,12 +54,12 @@ class Review extends BaseResource
                 'Yes' => 'success',
             ]),
             Boolean::make('Displayed', 'is_displayable')->sortable(),
-        ];
+        ]);
     }
 
     public function fields(Request $request)
     {
-        return [
+        return array_filter([
             Number::make('Rating')->readonly(),
             Textarea::make('Review Comment', 'comment')->rows(3)->alwaysShow()->readonly(),
             Text::make('Reviewer')->readonly(),
@@ -62,14 +67,14 @@ class Review extends BaseResource
                 return $value;
             })->readonly(),
             DateTime::make('Review Date', 'reviewed_at')->readonly(),
-            BelongsTo::make('Location')->readonly(),
+            nova('location') ? BelongsTo::make('Location', 'location', nova('location'))->readonly() : null,
 
             new Panel('Display Details', $this->displayFields()),
 
             new Panel('Reply Details', $this->replyFields()),
 
             new Panel('Identifier Data', $this->dataFields()),
-        ];
+        ]);
     }
 
     protected function displayFields()
@@ -101,36 +106,15 @@ class Review extends BaseResource
         ];
     }
 
-    protected function dataFields()
+    protected function dataFields(): array
     {
-        return [
-            ID::make()->hideWhenUpdating(),
-            Text::make('Google Review ID', 'google_ref')->hideWhenUpdating(),
-            DateTime::make('Created At')->exceptOnForms(),
-            DateTime::make('Updated At')->exceptOnForms(),
-        ];
-    }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [
-            // TODO - figure out how to share this
-            // new Filters\Location,
-        ];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
+        return array_merge(
+            parent::dataFields()->hideWhenUpdating(),
+            [
+                Text::make('Google Review ID', 'google_ref')->hideWhenUpdating(),
+                DateTime::make('Created At')->exceptOnForms(),
+                DateTime::make('Updated At')->exceptOnForms(),
+            ],
+        );
     }
 }

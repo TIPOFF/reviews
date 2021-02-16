@@ -30,25 +30,30 @@ class Competitor extends BaseResource
 
     public static $perPageViaRelationship = 20;
 
+    /** @psalm-suppress UndefinedClass */
+    protected array $filterClassList = [
+
+    ];
+
     public function fieldsForIndex(NovaRequest $request)
     {
-        return [
+        return array_filter([
             ID::make()->sortable(),
-            BelongsTo::make('Market', 'market', app()->getAlias('nova.market'))->sortable(),
+            nova('market') ? BelongsTo::make('Market', 'market', nova('market'))->sortable() : null,
             Text::make('Name')->sortable(),
-        ];
+        ]);
     }
 
     public function fields(Request $request)
     {
-        return [
+        return array_filter([
 
             Text::make('Name'),
             Text::make('Website', function () {
                 return '<a href="'.$this->website.'">'.$this->website.'</a>';
             })->asHtml(),
-            BelongsTo::make('Market', 'market', app()->getAlias('nova.market'))->searchable(),
-            BelongsTo::make('Location', 'location', app()->getAlias('nova.location'))->nullable(),
+            nova('market') ? BelongsTo::make('Market', 'market', nova('market'))->searchable() : null,
+            nova('market') ? BelongsTo::make('Location', 'location', nova('market'))->nullable() : null,
 
             new Panel('Address Information', $this->addressFields()),
 
@@ -56,8 +61,8 @@ class Competitor extends BaseResource
 
             new Panel('Hours of Operation', $this->hoursFields()),
 
-            HasMany::make('Snapshots', 'snapshots', Snapshot::class),
-        ];
+            nova('snapshot') ? HasMany::make('Snapshots', 'snapshots', nova('snapshot')) : null,
+        ]);
     }
 
     protected function addressFields()
@@ -72,17 +77,19 @@ class Competitor extends BaseResource
         ];
     }
 
-    protected function dataFields()
+    protected function dataFields(): array
     {
-        return [
-            Text::make('Map Link', function () {
-                return '<a href="'.$this->maps_url.'">'.$this->maps_url.'</a>';
-            })->asHtml(),
-            ID::make(),
-            Text::make('Latitude'),
-            Text::make('Longitude'),
-            Text::make('Place ID', 'place_location'),
-        ];
+        return array_merge(
+            parent::dataFields(),
+            [
+                Text::make('Map Link', function () {
+                    return '<a href="'.$this->maps_url.'">'.$this->maps_url.'</a>';
+                })->asHtml(),
+                Text::make('Latitude'),
+                Text::make('Longitude'),
+                Text::make('Place ID', 'place_location'),
+            ],
+        );
     }
 
     protected function hoursFields()
@@ -103,28 +110,5 @@ class Competitor extends BaseResource
             Text::make('Sunday Open'),
             Text::make('Sunday Close'),
         ];
-    }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [
-            // TODO - figure out how to share this
-            // new Filters\Market,
-        ];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
     }
 }

@@ -33,7 +33,7 @@ class Review extends BaseResource
 
     /** @psalm-suppress UndefinedClass */
     protected array $filterClassList = [
-
+        \Tipoff\Locations\Nova\Filters\Location::class,
     ];
 
     public function fieldsForIndex(NovaRequest $request)

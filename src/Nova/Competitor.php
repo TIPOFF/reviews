@@ -32,7 +32,7 @@ class Competitor extends BaseResource
 
     /** @psalm-suppress UndefinedClass */
     protected array $filterClassList = [
-
+        \Tipoff\Locations\Nova\Filters\Market::class,
     ];
 
     public function fieldsForIndex(NovaRequest $request)

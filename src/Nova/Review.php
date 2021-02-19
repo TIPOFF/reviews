@@ -18,6 +18,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
 use Tipoff\Support\Nova\BaseResource;
+use Tippoff\Locations\Nova\Filters\Location;
 
 class Review extends BaseResource
 {
@@ -33,7 +34,7 @@ class Review extends BaseResource
 
     /** @psalm-suppress UndefinedClass */
     protected array $filterClassList = [
-        \Tipoff\Locations\Nova\Filters\Location::class,
+        Location::class,
     ];
 
     public function fieldsForIndex(NovaRequest $request)

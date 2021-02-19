@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tipoff\Reviews\Tests;
 
 use Laravel\Nova\NovaCoreServiceProvider;
+use Tipoff\Locations\LocationsServiceProvider;
 use Tipoff\Reviews\ReviewsServiceProvider;
 use Tipoff\Reviews\Tests\Support\Providers\NovaTestbenchServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
@@ -17,8 +18,9 @@ class TestCase extends BaseTestCase
         return [
             NovaCoreServiceProvider::class,
             NovaTestbenchServiceProvider::class,
-            SupportServiceProvider::class,
             ReviewsServiceProvider::class,
+            SupportServiceProvider::class,
+            LocationsServiceProvider::class,
         ];
     }
 }

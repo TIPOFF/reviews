@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Mail;
 
-use Tipoff\Reviews\Models\Competitor;
-use Tipoff\Locations\Models\Market;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Tipoff\Locations\Models\Market;
+use Tipoff\Reviews\Models\Competitor;
 
 class SnapshotWeek extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $market;
     public $competitors;

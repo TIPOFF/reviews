@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Mail;
 
-use Tipoff\Locations\Models\Location;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Tipoff\Locations\Models\Location;
 
 class ReviewWeekend extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $locations;
 

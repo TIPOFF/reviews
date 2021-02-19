@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Commands;
 
-use Tipoff\Reviews\Mail\SnapshotMonth;
-use Tipoff\Locations\Models\Market;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Tipoff\Locations\Models\Market;
+use Tipoff\Reviews\Mail\SnapshotMonth;
 
 class SendSnapshotMonthEmails extends Command
 {

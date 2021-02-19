@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Commands;
 
-use Tipoff\Reviews\Mail\ReviewWeekend;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Tipoff\Reviews\Mail\ReviewWeekend;
 
 class SendReviewWeekendEmail extends Command
 {

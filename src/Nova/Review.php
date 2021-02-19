@@ -34,7 +34,7 @@ class Review extends BaseResource
 
     /** @psalm-suppress UndefinedClass */
     protected array $filterClassList = [
-        Location::class
+        Location::class,
     ];
 
     public function fieldsForIndex(NovaRequest $request)

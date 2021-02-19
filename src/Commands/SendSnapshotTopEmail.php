@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Commands;
 
-use Tipoff\Reviews\Mail\SnapshotTop;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use Tipoff\Reviews\Mail\SnapshotTop;
 
 class SendSnapshotTopEmail extends Command
 {

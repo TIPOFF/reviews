@@ -28,10 +28,10 @@ class SnapshotWeekTest extends TestCase
         $market = Market::factory()->create();
         Location::factory()->create([
             'market_id' => $market->id,
-            'manager_id' => User::factory()->create()->id
+            'manager_id' => User::factory()->create()->id,
         ]);
         Competitor::factory()->create([
-            'market_id' => $market->id
+            'market_id' => $market->id,
         ]);
         Mail::send(new SnapshotWeek($market));
         Mail::assertSent(function (SnapshotWeek $mail) use ($market) {

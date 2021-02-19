@@ -38,6 +38,12 @@ class ReviewsServiceProvider extends TipoffServiceProvider
                 SendSnapshotTopEmail::class,
                 SendSnapshotWeekEmails::class,
             ])
+            ->hasNovaResources([
+                \Tipoff\Reviews\Nova\Competitor::class,
+                \Tipoff\Reviews\Nova\Insight::class,
+                \Tipoff\Reviews\Nova\Review::class,
+                \Tipoff\Reviews\Nova\Snapshot::class,
+            ])
             ->name('reviews')
             ->hasViews()
             ->hasConfigFile();

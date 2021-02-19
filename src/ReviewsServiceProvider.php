@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews;
 
+use Tipoff\Reviews\Commands\SendReviewMonthEmail;
+use Tipoff\Reviews\Commands\SendReviewWeekendEmail;
+use Tipoff\Reviews\Commands\SendSnapshotMonthEmails;
+use Tipoff\Reviews\Commands\SendSnapshotTopEmail;
+use Tipoff\Reviews\Commands\SendSnapshotWeekEmails;
 use Tipoff\Reviews\Models\Competitor;
 use Tipoff\Reviews\Models\Insight;
 use Tipoff\Reviews\Models\Review;
@@ -26,7 +31,15 @@ class ReviewsServiceProvider extends TipoffServiceProvider
                 Review::class => ReviewPolicy::class,
                 Snapshot::class => SnapshotPolicy::class,
             ])
+            ->hasCommands([
+                SendReviewMonthEmail::class,
+                SendReviewWeekendEmail::class,
+                SendSnapshotMonthEmails::class,
+                SendSnapshotTopEmail::class,
+                SendSnapshotWeekEmails::class,
+            ])
             ->name('reviews')
+            ->hasViews()
             ->hasConfigFile();
     }
 }

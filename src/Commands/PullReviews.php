@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Commands;
 
-use Tipoff\Reviews\Models\Key;
-use Tipoff\Locations\Models\Location;
-use Tipoff\Reviews\Models\Review;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_MyBusiness;
 use Illuminate\Console\Command;
+use Tipoff\Locations\Models\Location;
+use Tipoff\Reviews\Models\Key;
+use Tipoff\Reviews\Models\Review;
 
 class PullReviews extends Command
 {

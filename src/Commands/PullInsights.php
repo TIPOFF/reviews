@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Commands;
 
-use Tipoff\Reviews\Models\Insight;
-use Tipoff\Reviews\Models\Key;
-use Tipoff\Locations\Models\Location;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_MyBusiness;
@@ -15,6 +12,9 @@ use Google_Service_MyBusiness_MetricRequest;
 use Google_Service_MyBusiness_ReportLocationInsightsRequest;
 use Google_Service_MyBusiness_TimeRange;
 use Illuminate\Console\Command;
+use Tipoff\Locations\Models\Location;
+use Tipoff\Reviews\Models\Insight;
+use Tipoff\Reviews\Models\Key;
 
 class PullInsights extends Command
 {

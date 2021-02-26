@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews;
 
+use Tipoff\Reviews\Commands\PullInsights;
+use Tipoff\Reviews\Commands\PullReviews;
 use Tipoff\Reviews\Commands\SendReviewMonthEmail;
 use Tipoff\Reviews\Commands\SendReviewWeekendEmail;
 use Tipoff\Reviews\Commands\SendSnapshotMonthEmails;
@@ -32,6 +34,8 @@ class ReviewsServiceProvider extends TipoffServiceProvider
                 Snapshot::class => SnapshotPolicy::class,
             ])
             ->hasCommands([
+                PullInsights::class,
+                PullReviews::class,
                 SendReviewMonthEmail::class,
                 SendReviewWeekendEmail::class,
                 SendSnapshotMonthEmails::class,

@@ -7,3 +7,13 @@ All notable changes to `reviews` will be documented in this file.
 - initial release
 - migrations loaded via package
 - container based model resolution
+
+## 2.0.0 - 2021-03-02
+
+- add models
+- add factories
+- add policies
+- register policies
+- add nova resources
+- register nova resources
+- package permissions

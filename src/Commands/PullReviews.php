@@ -29,19 +29,7 @@ class PullReviews extends Command
     protected $description = 'Pull the Google reviews for each location';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -62,7 +50,7 @@ class PullReviews extends Command
             if ($client->isAccessTokenExpired()) {
                 $client->refreshToken(array_search('refresh_token', $token));
                 $newtoken = $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-                $savetoken = Key::updateOrCreate(
+                Key::updateOrCreate(
                     ['slug' => 'gmb-token'],
                     ['value' => json_encode($newtoken)]
                 );

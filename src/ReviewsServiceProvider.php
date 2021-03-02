@@ -33,6 +33,12 @@ class ReviewsServiceProvider extends TipoffServiceProvider
                 Review::class => ReviewPolicy::class,
                 Snapshot::class => SnapshotPolicy::class,
             ])
+            ->hasNovaResources([
+                \Tipoff\Reviews\Nova\Competitor::class,
+                \Tipoff\Reviews\Nova\Insight::class,
+                \Tipoff\Reviews\Nova\Review::class,
+                \Tipoff\Reviews\Nova\Snapshot::class,
+            ])
             ->hasCommands([
                 PullInsights::class,
                 PullReviews::class,
@@ -41,12 +47,6 @@ class ReviewsServiceProvider extends TipoffServiceProvider
                 SendSnapshotMonthEmails::class,
                 SendSnapshotTopEmail::class,
                 SendSnapshotWeekEmails::class,
-            ])
-            ->hasNovaResources([
-                \Tipoff\Reviews\Nova\Competitor::class,
-                \Tipoff\Reviews\Nova\Insight::class,
-                \Tipoff\Reviews\Nova\Review::class,
-                \Tipoff\Reviews\Nova\Snapshot::class,
             ])
             ->name('reviews')
             ->hasViews()

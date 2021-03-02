@@ -6,12 +6,12 @@ namespace Tipoff\Reviews\Tests\Unit\Mail;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Mail;
+use Tipoff\Authorization\Models\User;
 use Tipoff\Locations\Models\Location;
 use Tipoff\Locations\Models\Market;
 use Tipoff\Reviews\Mail\SnapshotMonth;
 use Tipoff\Reviews\Models\Competitor;
 use Tipoff\Reviews\Tests\TestCase;
-use Tipoff\TestSupport\Models\User;
 
 class SnapshotMonthTest extends TestCase
 {

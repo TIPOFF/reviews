@@ -33,19 +33,7 @@ class PullInsights extends Command
     protected $description = 'Pull the GMB Insights for each location';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -54,7 +42,7 @@ class PullInsights extends Command
         $days = [45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
         foreach ($days as $day) {
-            $locations = $locations = Location::whereNotNull('gmb_location')->get();
+            $locations = Location::whereNotNull('gmb_location')->get();
 
             foreach ($locations as $location) {
                 $client = new Google_Client();
@@ -69,7 +57,7 @@ class PullInsights extends Command
                 if ($client->isAccessTokenExpired()) {
                     $client->refreshToken(array_search('refresh_token', $token));
                     $newtoken = $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-                    $savetoken = Key::updateOrCreate(
+                    Key::updateOrCreate(
                         ['slug' => 'gmb-token'],
                         ['value' => json_encode($newtoken)]
                     );

@@ -110,7 +110,7 @@ class Review extends BaseResource
     protected function dataFields(): array
     {
         return array_merge(
-            parent::dataFields()->hideWhenUpdating(),
+            parent::dataFields(),
             [
                 Text::make('Google Review ID', 'google_ref')->hideWhenUpdating(),
                 DateTime::make('Created At')->exceptOnForms(),

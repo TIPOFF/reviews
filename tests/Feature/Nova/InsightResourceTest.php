@@ -7,7 +7,6 @@ namespace Tipoff\Reviews\Tests\Feature\Nova;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Reviews\Models\Insight;
 use Tipoff\Reviews\Tests\TestCase;
-use Tipoff\TestSupport\Models\User;
 
 class InsightResourceTest extends TestCase
 {
@@ -18,7 +17,7 @@ class InsightResourceTest extends TestCase
     {
         Insight::factory()->count(4)->create();
 
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(self::createPermissionedUser('view insights', true));
 
         $response = $this->getJson('nova-api/insights')
             ->assertOk();

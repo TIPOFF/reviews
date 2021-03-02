@@ -7,7 +7,6 @@ namespace Tipoff\Reviews\Tests\Feature\Nova;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Reviews\Models\Snapshot;
 use Tipoff\Reviews\Tests\TestCase;
-use Tipoff\TestSupport\Models\User;
 
 class SnapshotResourceTest extends TestCase
 {
@@ -18,7 +17,7 @@ class SnapshotResourceTest extends TestCase
     {
         Snapshot::factory()->count(4)->create();
 
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(self::createPermissionedUser('view snapshots', true));
 
         $response = $this->getJson('nova-api/snapshots')
             ->assertOk();

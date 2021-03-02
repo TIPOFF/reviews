@@ -11,7 +11,7 @@ use Tipoff\Locations\Models\Market;
 use Tipoff\Reviews\Mail\SnapshotWeek;
 use Tipoff\Reviews\Models\Competitor;
 use Tipoff\Reviews\Tests\TestCase;
-use Tipoff\TestSupport\Models\User;
+use Tipoff\Authorization\Models\User;
 
 class SnapshotWeekTest extends TestCase
 {

@@ -7,7 +7,6 @@ namespace Tipoff\Reviews\Tests\Feature\Nova;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Reviews\Models\Competitor;
 use Tipoff\Reviews\Tests\TestCase;
-use Tipoff\TestSupport\Models\User;
 
 class CompetitorResourceTest extends TestCase
 {
@@ -18,7 +17,7 @@ class CompetitorResourceTest extends TestCase
     {
         Competitor::factory()->count(4)->create();
 
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(self::createPermissionedUser('view competitors', true));
 
         $response = $this->getJson('nova-api/competitors')
             ->assertOk();

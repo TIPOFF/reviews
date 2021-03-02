@@ -21,7 +21,7 @@
         "google/apiclient": "^2.7",
         "tipoff/authorization": "^2.1.1",
         "tipoff/laravel-google-api": "^1.0",
-        "tipoff/locations": "^2.3",
+        "tipoff/locations": "^2.3.1",
         "tipoff/support": "^1.5.2"
     },
     "require-dev": {

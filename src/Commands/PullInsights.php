@@ -41,28 +41,12 @@ class PullInsights extends Command
         // I'm refreshing the stats from the previous few days since the data appears to be delayed. If yesterday's stats become accurate as of 7am, then can remove this.
         $days = [45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
+        $myBusiness = app()->make(Google_Service_MyBusiness::class);
+
         foreach ($days as $day) {
             $locations = Location::whereNotNull('gmb_location')->get();
 
             foreach ($locations as $location) {
-                $client = new Google_Client();
-                // @todo Needs Refactoring
-                $client->setAuthConfig(resource_path('client_secret.json'));
-                $client->addScope(['https://www.googleapis.com/auth/business.manage']);
-                $client->setAccessType('offline');
-
-                $token = json_decode(Key::where('slug', 'gmb-token')->first()->value, true);
-                $client->setAccessToken($token);
-
-                if ($client->isAccessTokenExpired()) {
-                    $client->refreshToken(array_search('refresh_token', $token));
-                    $newtoken = $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-                    Key::updateOrCreate(
-                        ['slug' => 'gmb-token'],
-                        ['value' => json_encode($newtoken)]
-                    );
-                }
-
                 // @todo Needs Refactoring
                 if ($location->corporate == 0) {
                     $account = 'accounts/116666006358174413896';
@@ -70,8 +54,7 @@ class PullInsights extends Command
                     $account = 'accounts/108772742689976468845';
                 }
                 $accountlocation = $account.'/locations/'.$location->gmb_location;
-
-                $myBusiness = new Google_Service_MyBusiness($client);
+                
                 $reportLocationInsightsRequest = new Google_Service_MyBusiness_ReportLocationInsightsRequest();
                 $basicRequest = new Google_Service_MyBusiness_BasicMetricsRequest();
                 $metricRequests = new Google_Service_MyBusiness_MetricRequest();

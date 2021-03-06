@@ -13,7 +13,6 @@ use Google_Service_MyBusiness_TimeRange;
 use Illuminate\Console\Command;
 use Tipoff\Locations\Models\Location;
 use Tipoff\Reviews\Models\Insight;
-use Tipoff\Reviews\Models\Key;
 
 class PullInsights extends Command
 {

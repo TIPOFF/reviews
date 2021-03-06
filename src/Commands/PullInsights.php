@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tipoff\Reviews\Commands;
 
 use Carbon\Carbon;
-use Google_Client;
 use Google_Service_MyBusiness;
 use Google_Service_MyBusiness_BasicMetricsRequest;
 use Google_Service_MyBusiness_MetricRequest;
@@ -54,7 +53,7 @@ class PullInsights extends Command
                     $account = 'accounts/108772742689976468845';
                 }
                 $accountlocation = $account.'/locations/'.$location->gmb_location;
-                
+
                 $reportLocationInsightsRequest = new Google_Service_MyBusiness_ReportLocationInsightsRequest();
                 $basicRequest = new Google_Service_MyBusiness_BasicMetricsRequest();
                 $metricRequests = new Google_Service_MyBusiness_MetricRequest();

@@ -18,6 +18,7 @@
         "php": "^7.4|^8.0",
         "ext-json": "*",
         "drewroberts/media": "^3.2.2",
+        "tipoff/addresses": "^2.0.0",
         "tipoff/authorization": "^2.3.0",
         "tipoff/laravel-google-api": "^1.2.1",
         "tipoff/locations": "^2.3.2",

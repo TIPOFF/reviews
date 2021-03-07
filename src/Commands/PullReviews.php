@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Tipoff\Reviews\Commands;
 
 use Carbon\Carbon;
-use Google_Client;
 use Google_Service_MyBusiness;
 use Illuminate\Console\Command;
 use Tipoff\Locations\Models\Location;
-use Tipoff\Reviews\Models\Key;
 use Tipoff\Reviews\Models\Review;
 
 class PullReviews extends Command
@@ -36,30 +34,12 @@ class PullReviews extends Command
         $locations = Location::where('corporate', 1)
             ->whereNotNull('gmb_location')
             ->get();
+            
+        $myBusiness = app()->make(Google_Service_MyBusiness::class);
 
         foreach ($locations as $location) {
-            $client = new Google_Client();
-            // @todo Needs Refactoring
-            $client->setAuthConfig(resource_path('client_secret.json'));
-            $client->addScope(['https://www.googleapis.com/auth/business.manage']);
-            $client->setAccessType('offline');
-
-            $token = json_decode(Key::where('slug', 'gmb-token')->first()->value, true);
-            $client->setAccessToken($token);
-
-            if ($client->isAccessTokenExpired()) {
-                $client->refreshToken(array_search('refresh_token', $token));
-                $newtoken = $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-                Key::updateOrCreate(
-                    ['slug' => 'gmb-token'],
-                    ['value' => json_encode($newtoken)]
-                );
-            }
-
             // @todo Needs Refactoring
             $GoogleLocation = 'accounts/108772742689976468845/locations/'.$location->gmb_location.'/reviews';
-
-            $myBusiness = new Google_Service_MyBusiness($client);
 
             $response = $myBusiness->accounts_locations_reviews->get($GoogleLocation);
 

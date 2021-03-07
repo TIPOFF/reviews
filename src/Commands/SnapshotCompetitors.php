@@ -2,11 +2,11 @@
 
 namespace Tipoff\Reviews\Commands;
 
-use Tipoff\Reviews\Models\Competitor;
-use Tipoff\Reviews\Models\Snapshot;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Tipoff\Reviews\Models\Competitor;
+use Tipoff\Reviews\Models\Snapshot;
 
 class SnapshotCompetitors extends Command
 {

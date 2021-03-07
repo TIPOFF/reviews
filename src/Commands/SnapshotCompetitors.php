@@ -37,7 +37,7 @@ class SnapshotCompetitors extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -49,6 +49,8 @@ class SnapshotCompetitors extends Command
             $url = 'https://maps.googleapis.com/maps/api/place/details/json?place_id='.$competitor->place_location.'&key='.$apikey;
             $client = new Client();
             $response = $client->request('GET', $url);
+
+            /** @psalm-suppress ImplicitToStringCast */
             $body = json_decode($response->getBody(), true);
             $place = $body['result'];
 

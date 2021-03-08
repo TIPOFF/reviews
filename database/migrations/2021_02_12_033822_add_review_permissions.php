@@ -12,19 +12,10 @@ class AddReviewPermissions extends BasePermissionsMigration
             'view competitors',
             'create competitors',
             'update competitors',
-            'delete competitors',
             'view insights',
-            'create insights',
-            'update insights',
-            'delete insights',
             'view reviews',
-            'create reviews',
             'update reviews',
-            'delete reviews',
-            'view snapshots',
-            'create snapshots',
-            'update snapshots',
-            'delete snapshots'
+            'view snapshots'
         ];
 
         $this->createPermissions($permissions);

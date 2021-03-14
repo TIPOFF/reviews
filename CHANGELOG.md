@@ -17,3 +17,9 @@ All notable changes to `reviews` will be documented in this file.
 - add nova resources
 - register nova resources
 - package permissions
+
+## 2.1.0 - 2021-03-13
+
+- remove key
+- migrate permissions
+- grant permissions to roles

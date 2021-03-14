@@ -9,13 +9,13 @@ class AddReviewPermissions extends BasePermissionsMigration
     public function up()
     {
         $permissions = [
-            'view competitors' => ['Owner', 'Staff'],
-            'create competitors' => ['Owner'],
-            'update competitors' => ['Owner'],
-            'view insights' => ['Owner', 'Staff'],
-            'view reviews' => ['Owner', 'Staff'],
-            'update reviews' => ['Owner'],
-            'view snapshots' => ['Owner', 'Staff']
+            'view competitors' => ['Owner', 'Executive', 'Staff'],
+            'create competitors' => ['Owner', 'Executive'],
+            'update competitors' => ['Owner', 'Executive'],
+            'view insights' => ['Owner', 'Executive', 'Staff'],
+            'view reviews' => ['Owner', 'Executive', 'Staff'],
+            'update reviews' => ['Owner', 'Executive'],
+            'view snapshots' => ['Owner', 'Executive', 'Staff']
         ];
 
         $this->createPermissions($permissions);

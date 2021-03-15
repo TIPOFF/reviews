@@ -34,7 +34,7 @@ class PullReviews extends Command
         $locations = Location::where('corporate', 1)
             ->whereNotNull('gmb_location')
             ->get();
-            
+
         $myBusiness = app()->make(Google_Service_MyBusiness::class);
 
         foreach ($locations as $location) {
@@ -45,41 +45,23 @@ class PullReviews extends Command
 
             $reviews_data = $response->toSimpleObject()->reviews;
 
-            foreach ($reviews_data as $review_data) {
-                $review = Review::firstOrNew(['google_ref' => $review_data['reviewId']]);
-                if ($review_data['starRating'] == 'FIVE') {
-                    $decimal_rating = 5;
-                }
-                if ($review_data['starRating'] == 'FOUR') {
-                    $decimal_rating = 4;
-                }
-                if ($review_data['starRating'] == 'THREE') {
-                    $decimal_rating = 3;
-                }
-                if ($review_data['starRating'] == 'TWO') {
-                    $decimal_rating = 2;
-                }
-                if ($review_data['starRating'] == 'ONE') {
-                    $decimal_rating = 1;
-                }
-                if ($review_data['starRating'] == 'ZERO') {
-                    $decimal_rating = 0;
-                }
-                $review->rating = $decimal_rating;
-                if (isset($review_data['comment'])) {
-                    $review->comment = $review_data['comment'];
-                }
-                $review->reviewer = $review_data['reviewer']['displayName'];
-                $review->reviewer_photo = $review_data['reviewer']['profilePhotoUrl'];
-                $review->reviewed_at = Carbon::parse($review_data['createTime']);
-                $review->review_updated_at = Carbon::parse($review_data['updateTime']);
-                if (isset($review_data['reviewReply'])) {
-                    $review->reply = $review_data['reviewReply']['comment'];
-                    $review->replied_at = Carbon::parse($review_data['reviewReply']['updateTime']);
-                }
+            $ratings = ['zero','one','two','three','four','five',]; // keys are rating value
 
-                $review->location_id = $location->id;
-                $review->save();
+            foreach ($reviews_data as $review_data) {
+                $review = Review::firstOrCreate(
+                    ['google_ref' => $review_data['reviewId']],
+                    [
+                        'rating' => array_search(strtolower($review_data['starRating']), $ratings),
+                        'comment' => $review_data['comment'] ?? null,
+                        'reviewer' => $review_data['reviewer']['displayName'],
+                        'reviewer_photo' => $review_data['reviewer']['profilePhotoUrl'],
+                        'reviewed_at' => Carbon::parse($review_data['createTime']),
+                        'review_updated_at' => Carbon::parse($review_data['updateTime']),
+                        'reply' => $review_data['reviewReply'] ? $review_data['reviewReply']['comment'] : null,
+                        'replied_at' => $review_data['reviewReply'] ? Carbon::parse($review_data['reviewReply']['updateTime']) : null,
+                    ]
+                );
+                $review->location()->associate($location);  // hydrate the location_id
             }
         }
     }

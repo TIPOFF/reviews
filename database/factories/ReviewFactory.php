@@ -25,10 +25,10 @@ class ReviewFactory extends Factory
     {
         return [
             'google_ref'        => $this->faker->md5,
-            'rating'            => $this->faker->numberBetween(1, 10),
+            'rating'            => $this->faker->numberBetween(1, 5),
             'comment'           => $this->faker->sentences(3, true),
             'reviewer'          => $this->faker->name,
-            'reviewer_photo'    => $this->faker->word,
+            'reviewer_photo'    => $this->faker->imageUrl(480,480,'people'),
 
             'reviewed_at'       => $this->faker->dateTimeBetween($startDate = '-7 days', $endDate = 'now', $timezone = null),
             'reply'             => $this->faker->sentences(3, true),

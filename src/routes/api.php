@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Resources\ReviewResource;
+use Tipoff\Http\Resources\ReviewResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Tipoff\Locations\Models\Location;

@@ -18,7 +18,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
 use Tipoff\Support\Nova\BaseResource;
-use Tippoff\Locations\Nova\Filters\Location;
+use Tipoff\Locations\Nova\Filters\Location;
 
 class Review extends BaseResource
 {
@@ -45,11 +45,7 @@ class Review extends BaseResource
             DateTime::make('Review Date', 'reviewed_at')->format('YYYY-MM-DD')->sortable(),
             Number::make('Rating')->sortable(),
             Badge::make('Replied', function () {
-                if (isset($this->replied_at)) {
-                    return 'Yes';
-                }
-
-                return 'No';
+                return $this->replied_at ? 'Yes' : 'No';
             })->map([
                 'No' => 'danger',
                 'Yes' => 'success',

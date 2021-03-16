@@ -17,8 +17,8 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Tipoff\Support\Nova\BaseResource;
 use Tipoff\Locations\Nova\Filters\Location;
+use Tipoff\Support\Nova\BaseResource;
 
 class Review extends BaseResource
 {

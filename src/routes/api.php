@@ -11,8 +11,9 @@ use Tipoff\Locations\Models\Location;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/location/{$location}/reviews', function ($location){
+Route::get('/location/{$location}/reviews', function ($location) {
     // Location uses slug as route key name
-    $location = Location::where('slug',$location)->first();
+    $location = Location::where('slug', $location)->first();
+
     return ReviewResource::collection($location->reviews);
 });

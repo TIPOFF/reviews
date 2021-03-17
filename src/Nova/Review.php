@@ -106,10 +106,13 @@ class Review extends BaseResource
             DateTime::make('Reply Date', 'replied_at')->hideWhenUpdating(),
         ];
     }
-
-    return array_merge(
+    
+    protected function dataFields(): array
+    {
+        return array_merge(
             parent::dataFields(),
             $this->creatorDataFields(),
             $this->updaterDataFields(),
         );
+    }
 }

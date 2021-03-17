@@ -56,5 +56,4 @@ class Review extends BaseModel
     {
         return Carbon::parse($this->reviewed_at)->setTimeZone('America/New_York')->format('M j, Y');
     }
-    
 }

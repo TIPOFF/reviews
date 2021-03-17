@@ -107,15 +107,9 @@ class Review extends BaseResource
         ];
     }
 
-    protected function dataFields(): array
-    {
-        return array_merge(
+    return array_merge(
             parent::dataFields(),
-            [
-                Text::make('Google Review ID', 'google_ref')->hideWhenUpdating(),
-                DateTime::make('Created At')->exceptOnForms(),
-                DateTime::make('Updated At')->exceptOnForms(),
-            ],
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
         );
-    }
 }

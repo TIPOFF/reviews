@@ -14,13 +14,6 @@ class ReviewResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'rating' => $this->rating,
-            'comment' => $this->comment,
-            'reviewer' => $this->reviewer,
-            'reviewer_photo' => $this->reviewer_photo,
-            'created_at' => $this->created_at,
-        ];
+        return parent::toArray($request);
     }
 }

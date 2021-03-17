@@ -8,10 +8,12 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
+use Tipoff\Support\Traits\HasUpdater;
 
 class Review extends BaseModel
 {
     use HasPackageFactory;
+    use HasUpdater;
 
     protected $casts = [
         'reviewed_at' => 'datetime',

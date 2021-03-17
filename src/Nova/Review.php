@@ -111,7 +111,8 @@ class Review extends BaseResource
     {
         return array_merge(
             parent::dataFields(),
-            $this->creatorDataFields(),
+            Text::make('Google Review ID', 'google_ref')->hideWhenUpdating(),
+            DateTime::make('Created At')->exceptOnForms(),
             $this->updaterDataFields(),
         );
     }

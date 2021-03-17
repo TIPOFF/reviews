@@ -26,6 +26,7 @@ class Review extends BaseModel
         return $this->belongsTo(app('location'));
     }
 
+    // Attributes for api endpoint to display on website
     public function getTitleAttribute()
     {
         return $this->title_displayable ?? '5 out of 5 stars!';
@@ -55,4 +56,5 @@ class Review extends BaseModel
     {
         return Carbon::parse($this->reviewed_at)->setTimeZone('America/New_York')->format('M j, Y');
     }
+    
 }

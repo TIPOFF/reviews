@@ -106,7 +106,7 @@ class Review extends BaseResource
             DateTime::make('Reply Date', 'replied_at')->hideWhenUpdating(),
         ];
     }
-
+    
     protected function dataFields(): array
     {
         return array_merge(
@@ -114,8 +114,8 @@ class Review extends BaseResource
             [
                 Text::make('Google Review ID', 'google_ref')->hideWhenUpdating(),
                 DateTime::make('Created At')->exceptOnForms(),
-                DateTime::make('Updated At')->exceptOnForms(),
             ],
+            $this->updaterDataFields(),
         );
     }
 }

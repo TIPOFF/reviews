@@ -28,7 +28,6 @@ class CreateReviewsTable extends Migration
             $table->string('title_displayable')->nullable(); // Quick bold title excerpt from the comment. If null, will default to "5 out of 5 stars!" or some generic title based on 5 star rating
             $table->text('comment_displayable')->nullable(); // Allows modifying review comment for display on website (mostly for grammar, not content). If null, will just use actual review comment.
             
-            $table->foreignIdFor(app('user'), 'creator_id')->nullable();
             $table->foreignIdFor(app('user'), 'updater_id')->nullable();
             $table->timestamps();
         });

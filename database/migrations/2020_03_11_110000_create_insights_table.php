@@ -27,7 +27,7 @@ class CreateInsightsTable extends Migration
             $table->unsignedInteger('photos_views_customer')->nullable();
             $table->unsignedInteger('photos_count_merchant')->nullable();
             $table->unsignedInteger('photos_count_customer')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at');
         });
     }
 }

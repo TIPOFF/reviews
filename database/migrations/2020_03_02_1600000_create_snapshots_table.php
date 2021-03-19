@@ -17,7 +17,7 @@ class CreateSnapshotsTable extends Migration
             $table->date('date');
             $table->smallInteger('reviews')->nullable();
             $table->unsignedDecimal('rating', 2, 1)->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at');
         });
     }
 }

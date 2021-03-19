@@ -10,6 +10,8 @@ use Tipoff\Support\Traits\HasPackageFactory;
 class Snapshot extends Model
 {
     use HasPackageFactory;
+    
+    const UPDATED_AT = null;
 
     protected $casts = [
         'date' => 'date',

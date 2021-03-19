@@ -27,7 +27,13 @@ class Review extends BaseModel
     {
         return $this->belongsTo(app('location'));
     }
+    
+    public function scopeDisplayable($query)
+    {
+        return $query->where('is_displayable', true)->orderBy('reviewed_at', 'desc');
+    }
 
+    // Attributes for api endpoint to display on website
     public function getTitleAttribute()
     {
         return $this->title_displayable ?? '5 out of 5 stars!';

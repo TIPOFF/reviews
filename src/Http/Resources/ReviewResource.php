@@ -15,6 +15,7 @@ class ReviewResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'ref' => $this->google_ref,
             'title' => $this->title,
             'text' => $this->text,
             'name' => $this->name,

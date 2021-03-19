@@ -10,6 +10,8 @@ use Tipoff\Support\Traits\HasPackageFactory;
 class Insight extends Model
 {
     use HasPackageFactory;
+    
+    const UPDATED_AT = null;
 
     protected $casts = [
         'date' => 'date',

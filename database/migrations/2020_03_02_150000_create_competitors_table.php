@@ -13,6 +13,7 @@ class CreateCompetitorsTable extends Migration
         Schema::create('competitors', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(app('market'));
+            $table->foreignIdFor(app('domestic_address'));
             $table->string('place_location')->unique(); // Google Places ID
             $table->string('name')->nullable();
             $table->string('address')->nullable();

@@ -26,17 +26,18 @@ class CompetitorFactory extends Factory
         $city = $this->faker->city;
 
         return [
-            'market_id'         => randomOrCreate(app('market')),
-            'place_location'    => $this->faker->unique()->md5,
-            'name'              => $this->faker->word,
-            'address'           => $this->faker->address,
-            'address2'          => $this->faker->address,
-            'city'              => $this->faker->city,
-            'state'             => $this->faker->stateAbbr,
-            'zip'               => $this->faker->postcode,
-            'maps_url'          => $this->faker->unique()->url,
-            'website'           => $this->faker->domainName,
-            'location_id'       => null,
+            'market_id'             => randomOrCreate(app('market')),
+            'domestic_address_id'   => randomOrCreate(app('domestic_address')),
+            'place_location'        => $this->faker->unique()->md5,
+            'name'                  => $this->faker->word,
+            'address'               => $this->faker->address,
+            'address2'              => $this->faker->address,
+            'city'                  => $this->faker->city,
+            'state'                 => $this->faker->stateAbbr,
+            'zip'                   => $this->faker->postcode,
+            'maps_url'              => $this->faker->unique()->url,
+            'website'               => $this->faker->domainName,
+            'location_id'           => null,
         ];
     }
 }

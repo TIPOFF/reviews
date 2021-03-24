@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace Tipoff\Reviews\Tests;
 
+use DrewRoberts\Media\MediaServiceProvider;
 use Laravel\Nova\NovaCoreServiceProvider;
 use Spatie\Permission\PermissionServiceProvider;
 use Tipoff\Addresses\AddressesServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Locations\LocationsServiceProvider;
 use Tipoff\Reviews\ReviewsServiceProvider;
-use Tipoff\Reviews\Tests\Support\Providers\NovaTestbenchServiceProvider;
+use Tipoff\Seo\SeoServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
 use Tipoff\TestSupport\BaseTestCase;
+use Tipoff\TestSupport\Providers\NovaPackageServiceProvider;
 
 class TestCase extends BaseTestCase
 {
@@ -20,13 +22,15 @@ class TestCase extends BaseTestCase
     {
         return [
             NovaCoreServiceProvider::class,
-            NovaTestbenchServiceProvider::class,
+            NovaPackageServiceProvider::class,
             SupportServiceProvider::class,
-            AddressesServiceProvider::class,
-            AuthorizationServiceProvider::class,
             PermissionServiceProvider::class,
-            ReviewsServiceProvider::class,
+            AuthorizationServiceProvider::class,
+            AddressesServiceProvider::class,
+            MediaServiceProvider::class,
+            SeoServiceProvider::class,
             LocationsServiceProvider::class,
+            ReviewsServiceProvider::class,
         ];
     }
 }

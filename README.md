@@ -42,7 +42,6 @@ We include the following models:
 
 - Competitor
 - Insight
-- Key
 - Review
 - Snapshot
 

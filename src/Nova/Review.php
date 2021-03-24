@@ -17,7 +17,6 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
-use Tipoff\Locations\Nova\Filters\Location;
 use Tipoff\Support\Nova\BaseResource;
 
 class Review extends BaseResource
@@ -31,11 +30,20 @@ class Review extends BaseResource
     ];
 
     public static $group = 'Reporting';
-
+    
     /** @psalm-suppress UndefinedClass */
     protected array $filterClassList = [
-        Location::class,
+        \Tipoff\Locations\Nova\Filters\Location::class,
     ];
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        if ($request->user()->hasPermissionTo('all locations')) {
+            return $query;
+        }
+
+        return $query->whereIn('location_id', $request->user()->locations->pluck('id'));
+    }
 
     public function fieldsForIndex(NovaRequest $request)
     {

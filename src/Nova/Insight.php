@@ -26,11 +26,20 @@ class Insight extends BaseResource
     public static $group = 'Reporting';
 
     public static $perPageViaRelationship = 10;
-
+    
     /** @psalm-suppress UndefinedClass */
     protected array $filterClassList = [
         \Tipoff\Locations\Nova\Filters\Location::class,
     ];
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        if ($request->user()->hasPermissionTo('all locations')) {
+            return $query;
+        }
+
+        return $query->whereIn('location_id', $request->user()->locations->pluck('id'));
+    }
 
     public function fieldsForIndex(NovaRequest $request)
     {

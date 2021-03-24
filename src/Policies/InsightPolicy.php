@@ -3,12 +3,14 @@
 namespace Tipoff\Reviews\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Tipoff\Locations\Traits\HasLocationPermissions;
 use Tipoff\Reviews\Models\Insight;
 use Tipoff\Support\Contracts\Models\UserInterface;
 
 class InsightPolicy
 {
     use HandlesAuthorization;
+    use HasLocationPermissions;
 
     public function viewAny(UserInterface $user): bool
     {
@@ -17,7 +19,7 @@ class InsightPolicy
 
     public function view(UserInterface $user, Insight $insight): bool
     {
-        return $user->hasPermissionTo('view insights') ? true : false;
+        return $this->hasLocationPermission($user, 'view insights', $insight->location_id);
     }
 
     public function create(UserInterface $user): bool

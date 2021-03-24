@@ -3,12 +3,14 @@
 namespace Tipoff\Reviews\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Tipoff\Locations\Traits\HasLocationPermissions;
 use Tipoff\Reviews\Models\Review;
 use Tipoff\Support\Contracts\Models\UserInterface;
 
 class ReviewPolicy
 {
     use HandlesAuthorization;
+    use HasLocationPermissions;
 
     public function viewAny(UserInterface $user): bool
     {
@@ -17,7 +19,7 @@ class ReviewPolicy
 
     public function view(UserInterface $user, Review $review): bool
     {
-        return $user->hasPermissionTo('view reviews') ? true : false;
+        return $this->hasLocationPermission($user, 'view reviews', $review->location_id);
     }
 
     public function create(UserInterface $user): bool
@@ -27,7 +29,7 @@ class ReviewPolicy
 
     public function update(UserInterface $user, Review $review): bool
     {
-        return $user->hasPermissionTo('update reviews') ? true : false;
+        return $this->hasLocationPermission($user, 'update reviews', $review->location_id);
     }
 
     public function delete(UserInterface $user, Review $review): bool

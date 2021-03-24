@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Tipoff\Reviews\Tests\Feature\Nova;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Spatie\Permission\Models\Role;
+use Tipoff\Authorization\Models\User;
+use Tipoff\Locations\Models\Location;
 use Tipoff\Reviews\Models\Review;
 use Tipoff\Reviews\Tests\TestCase;
 
@@ -12,16 +15,38 @@ class ReviewResourceTest extends TestCase
 {
     use DatabaseTransactions;
 
+    private const NOVA_ROUTE = 'nova-api/reviews';
+    
     /** @test */
-    public function index()
+    public function index_role_location_filter()
     {
-        Review::factory()->count(4)->create();
+        $location1 = Location::factory()->create();
+        $location2 = Location::factory()->create();
 
-        $this->actingAs(self::createPermissionedUser('view reviews', true));
+        Review::factory()->count(2)->create([
+            'location_id' => $location1,
+        ]);
 
-        $response = $this->getJson('nova-api/reviews')
+        Review::factory()->count(3)->create([
+            'location_id' => $location2,
+        ]);
+
+        /** @var User $user */
+        $user = User::factory()->create()->givePermissionTo(
+            Role::findByName('Admin')->getPermissionNames()     // Use individual permissions so we can revoke one
+        );
+        $user->locations()->attach($location1);
+        $this->actingAs($user);
+
+        $response = $this->getJson(self::NOVA_ROUTE)
             ->assertOk();
 
-        $this->assertCount(4, $response->json('resources'));
+        $this->assertCount(5, $response->json('resources'));
+
+        $user->revokePermissionTo('all locations');
+        $response = $this->getJson(self::NOVA_ROUTE)
+            ->assertOk();
+
+        $this->assertCount(2, $response->json('resources'));
     }
 }

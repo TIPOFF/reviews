@@ -17,12 +17,12 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
-        "drewroberts/media": "^3.3.0",
-        "tipoff/addresses": "^2.5.0",
-        "tipoff/authorization": "^2.5.5",
-        "tipoff/laravel-google-api": "^1.3.2",
-        "tipoff/locations": "^2.6.0",
-        "tipoff/support": "^1.7.2"
+        "drewroberts/media": "^3.4.0",
+        "tipoff/addresses": "^2.6.0",
+        "tipoff/authorization": "^2.6.2",
+        "tipoff/laravel-google-api": "^1.3.3",
+        "tipoff/locations": "^2.7.1",
+        "tipoff/support": "^1.8.5"
     },
     "require-dev": {
         "tipoff/test-support": "^1.3.0"

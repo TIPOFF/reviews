@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Tipoff\Reviews\Tests\Feature\Nova;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Spatie\Permission\Models\Role;
+use Tipoff\Authorization\Models\User;
 use Tipoff\Reviews\Models\Snapshot;
 use Tipoff\Reviews\Tests\TestCase;
+use Tipoff\Locations\Models\Location;
 
 class SnapshotResourceTest extends TestCase
 {

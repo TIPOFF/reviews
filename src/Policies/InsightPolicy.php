@@ -17,7 +17,7 @@ class InsightPolicy
 
     public function view(UserInterface $user, Insight $insight): bool
     {
-        return $user->hasPermissionTo('view insights') ? true : false;
+        return $this->hasLocationPermission($user, 'view insights', $insight->location_id);
     }
 
     public function create(UserInterface $user): bool

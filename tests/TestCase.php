@@ -10,9 +10,9 @@ use Tipoff\Addresses\AddressesServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Locations\LocationsServiceProvider;
 use Tipoff\Reviews\ReviewsServiceProvider;
-use Tipoff\Reviews\Tests\Support\Providers\NovaTestbenchServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
 use Tipoff\TestSupport\BaseTestCase;
+use Tipoff\TestSupport\Providers\NovaPackageServiceProvider;
 
 class TestCase extends BaseTestCase
 {
@@ -20,7 +20,7 @@ class TestCase extends BaseTestCase
     {
         return [
             NovaCoreServiceProvider::class,
-            NovaTestbenchServiceProvider::class,
+            NovaPackageServiceProvider::class,
             SupportServiceProvider::class,
             AddressesServiceProvider::class,
             AuthorizationServiceProvider::class,

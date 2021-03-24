@@ -12,16 +12,38 @@ class InsightResourceTest extends TestCase
 {
     use DatabaseTransactions;
 
+    private const NOVA_ROUTE = 'nova-api/insights';
+    
     /** @test */
-    public function index()
+    public function index_role_location_filter()
     {
-        Insight::factory()->count(4)->create();
+        $location1 = Location::factory()->create();
+        $location2 = Location::factory()->create();
 
-        $this->actingAs(self::createPermissionedUser('view insights', true));
+        Insight::factory()->count(2)->create([
+            'location_id' => $location1,
+        ]);
 
-        $response = $this->getJson('nova-api/insights')
+        Insight::factory()->count(3)->create([
+            'location_id' => $location2,
+        ]);
+
+        /** @var User $user */
+        $user = User::factory()->create()->givePermissionTo(
+            Role::findByName('Admin')->getPermissionNames()     // Use individual permissions so we can revoke one
+        );
+        $user->locations()->attach($location1);
+        $this->actingAs($user);
+
+        $response = $this->getJson(self::NOVA_ROUTE)
             ->assertOk();
 
-        $this->assertCount(4, $response->json('resources'));
+        $this->assertCount(5, $response->json('resources'));
+
+        $user->revokePermissionTo('all locations');
+        $response = $this->getJson(self::NOVA_ROUTE)
+            ->assertOk();
+
+        $this->assertCount(2, $response->json('resources'));
     }
 }

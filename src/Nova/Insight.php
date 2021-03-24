@@ -124,9 +124,4 @@ class Insight extends BaseResource
             }),
         ];
     }
-
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        return $query->where('views_maps', '>', 0);
-    }
 }

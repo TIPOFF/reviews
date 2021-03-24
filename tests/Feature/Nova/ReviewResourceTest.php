@@ -7,9 +7,9 @@ namespace Tipoff\Reviews\Tests\Feature\Nova;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Spatie\Permission\Models\Role;
 use Tipoff\Authorization\Models\User;
+use Tipoff\Locations\Models\Location;
 use Tipoff\Reviews\Models\Review;
 use Tipoff\Reviews\Tests\TestCase;
-use Tipoff\Locations\Models\Location;
 
 class ReviewResourceTest extends TestCase
 {

@@ -52,6 +52,7 @@ class Competitor extends BaseResource
             Text::make('Website', function () {
                 return '<a href="'.$this->website.'">'.$this->website.'</a>';
             })->asHtml(),
+            nova('domestic_address') ? BelongsTo::make('Domestic Address', 'domestic_address', nova('domestic_address'))->searchable() : null,
             nova('market') ? BelongsTo::make('Market', 'market', nova('market'))->searchable() : null,
             nova('market') ? BelongsTo::make('Location', 'location', nova('market'))->nullable() : null,
 

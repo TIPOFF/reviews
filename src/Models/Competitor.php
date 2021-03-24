@@ -15,6 +15,11 @@ class Competitor extends Model
     protected $casts = [
     ];
 
+    public function domestic_address()
+    {
+        return $this->hasOne(app('domestic_address'));
+    }
+
     public function market()
     {
         return $this->belongsTo(app('market'));

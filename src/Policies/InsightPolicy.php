@@ -3,8 +3,8 @@
 namespace Tipoff\Reviews\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Tipoff\Reviews\Models\Insight;
 use Tipoff\Locations\Traits\HasLocationPermissions;
+use Tipoff\Reviews\Models\Insight;
 use Tipoff\Support\Contracts\Models\UserInterface;
 
 class InsightPolicy

@@ -9,7 +9,6 @@ use Spatie\Permission\Models\Role;
 use Tipoff\Authorization\Models\User;
 use Tipoff\Reviews\Models\Competitor;
 use Tipoff\Reviews\Tests\TestCase;
-use Tipoff\Locations\Models\Location;
 
 class CompetitorResourceTest extends TestCase
 {

@@ -4,11 +4,13 @@ namespace Tipoff\Reviews\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Tipoff\Reviews\Models\Insight;
+use Tipoff\Locations\Traits\HasLocationPermissions;
 use Tipoff\Support\Contracts\Models\UserInterface;
 
 class InsightPolicy
 {
     use HandlesAuthorization;
+    use HasLocationPermissions;
 
     public function viewAny(UserInterface $user): bool
     {

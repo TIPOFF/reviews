@@ -11,17 +11,23 @@ use Tipoff\Reviews\Tests\TestCase;
 class CompetitorResourceTest extends TestCase
 {
     use DatabaseTransactions;
-
+    
+    private const NOVA_ROUTE = 'nova-api/competitors';
+    
     /** @test */
     public function index()
     {
-        Competitor::factory()->count(4)->create();
+        Competitor::factory()->count(3)->create();
 
-        $this->actingAs(self::createPermissionedUser('view competitors', true));
+        /** @var User $user */
+        $user = User::factory()->create()->givePermissionTo(
+            Role::findByName('Admin')->getPermissionNames()     // Use individual permissions so we can revoke one
+        );
+        $this->actingAs($user);
 
-        $response = $this->getJson('nova-api/competitors')
+        $response = $this->getJson(self::NOVA_ROUTE)
             ->assertOk();
 
-        $this->assertCount(4, $response->json('resources'));
+        $this->assertCount(3, $response->json('resources'));
     }
 }

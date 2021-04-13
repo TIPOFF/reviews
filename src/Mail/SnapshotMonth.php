@@ -57,13 +57,13 @@ class SnapshotMonth extends Mailable
         });
 
 
-        if (isset($market->locations->first()->manager->email) && $market->locations->first()->manager->email !== $market->locations()->first()->contact_email) {
+        if (isset($market->locations->first()->manager->email) && $market->locations->first()->manager->email !== $market->locations()->first()->email()->first()->email) {
             $locationemails = [
-                $market->locations()->first()->contact_email,
+                $market->locations()->first()->email()->first()->email,
                 $market->locations()->first()->manager->email,
             ];
         } else {
-            $locationemails = $market->locations()->first()->contact_email;
+            $locationemails = $market->locations()->first()->email()->first()->email;
         }
 
         return $this->markdown('emails.snapshots.month')

@@ -38,7 +38,7 @@ class SnapshotWeekTest extends TestCase
             $mail->build();
 
             return $mail->market->id === $market->id &&
-                $mail->hasTo($market->locations->first()->contact_email) &&
+                $mail->hasTo($market->locations()->first()->email()->first()->email) &&
                 $mail->hasCc('kirk@thegreatescaperoom.com') &&
                 $mail->hasBcc('digitalmgr@thegreatescaperoom.com');
         });

@@ -23,3 +23,8 @@ All notable changes to `reviews` will be documented in this file.
 - remove key
 - migrate permissions
 - grant permissions to roles
+
+## 2.2.0 - 2021-04-15
+
+- implement email address relationship
+- implement domestic address relationship
